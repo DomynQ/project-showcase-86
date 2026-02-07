@@ -8,7 +8,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop&q=80",
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com",
   },
   {
     title: "Task Management App",
@@ -16,7 +16,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&auto=format&fit=crop&q=80",
     tags: ["TypeScript", "React", "Firebase", "Tailwind"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com",
   },
   {
     title: "Analytics Dashboard",
@@ -24,21 +24,21 @@ const projects = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
     tags: ["React", "D3.js", "PostgreSQL", "GraphQL"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com",
   },
   {
     title: "Social Media App",
     description: "Közösségi platform valós idejű üzenetküldéssel, képmegosztással és személyre szabott hírfolyammal.",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop&q=80",
     tags: ["Next.js", "Prisma", "Socket.io", "AWS"],
-    liveUrl: "https://example.com"
+    liveUrl: "https://example.com",
   },
   {
     title: "Weather Application",
     description: "Időjárás alkalmazás geolokációval, 7 napos előrejelzéssel és gyönyörű animált háttérrel.",
     image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&auto=format&fit=crop&q=80",
     tags: ["React", "Weather API", "Framer Motion"],
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com",
   },
   {
     title: "Portfolio Website",
@@ -46,34 +46,33 @@ const projects = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
     tags: ["React", "TypeScript", "Tailwind", "Framer"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com"
-  }
+    githubUrl: "https://github.com",
+  },
 ];
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24">
+    <section id="projects" className="py-28 relative">
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="mb-16"
         >
-          <span className="inline-block px-4 py-2 mb-6 text-sm font-medium rounded-full bg-accent/10 text-accent">
-            Portfólió
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary mb-4 block">
+            02 — Projektek
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Kiemelt <span className="text-gradient-accent">projektek</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+            Válogatott <span className="text-gradient-primary">munkáim</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Íme néhány projekt, amelyeken dolgoztam. Mindegyik egyedi kihívásokat 
-            és tanulási lehetőségeket jelentett.
+          <p className="text-muted-foreground text-lg max-w-xl">
+            Minden projekt egyedi kihívást jelentett — íme néhány, amelyre a legbüszkébb vagyok.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <ProjectCard key={project.title} {...project} index={index} />
           ))}

@@ -1,73 +1,108 @@
 import { motion } from "framer-motion";
-import { Code2, Rocket, Users, Zap } from "lucide-react";
+import { Briefcase, GraduationCap, Heart, Target } from "lucide-react";
 
-const features = [
+const stats = [
+  { value: "5+", label: "Év tapasztalat" },
+  { value: "30+", label: "Befejezett projekt" },
+  { value: "15+", label: "Boldog ügyfél" },
+  { value: "∞", label: "Kávé" },
+];
+
+const values = [
   {
-    icon: Code2,
-    title: "Tiszta kód",
-    description: "Könnyen olvasható, karbantartható és skálázható kód írása."
+    icon: Target,
+    title: "Precizitás",
+    description: "Pixel-perfect megoldások, amik minden böngészőben és eszközön tökéletesen működnek.",
   },
   {
-    icon: Rocket,
-    title: "Modern technológiák",
-    description: "React, TypeScript, Node.js és a legújabb eszközök használata."
+    icon: Briefcase,
+    title: "Professzionalizmus",
+    description: "Tiszta kód, átlátható struktúra és részletes dokumentáció minden projektnél.",
   },
   {
-    icon: Users,
-    title: "Csapatmunka",
-    description: "Hatékony együttműködés agilis környezetben."
+    icon: Heart,
+    title: "Szenvedély",
+    description: "Minden projektet úgy kezelek, mintha a sajátom lenne — mert a minőség nem alku.",
   },
   {
-    icon: Zap,
-    title: "Gyors tanulás",
-    description: "Új technológiák és megoldások gyors elsajátítása."
-  }
+    icon: GraduationCap,
+    title: "Folyamatos fejlődés",
+    description: "Naprakész tudás, új technológiák és best practice-ek folyamatos elsajátítása.",
+  },
 ];
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-secondary/30">
+    <section id="about" className="py-28 relative">
       <div className="container px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="mb-20"
         >
-          <span className="inline-block px-4 py-2 mb-6 text-sm font-medium rounded-full bg-primary/10 text-primary">
-            Rólam
+          <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary mb-4 block">
+            01 — Rólam
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Szenvedélyem a <span className="text-gradient-primary">fejlesztés</span>
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Több éves tapasztalattal rendelkezem a webfejlesztés területén. 
-            Célom olyan alkalmazások készítése, amelyek nemcsak jól működnek, 
-            hanem kiváló felhasználói élményt is nyújtanak. Mindig törekszem 
-            a legjobb gyakorlatok alkalmazására és a folyamatos fejlődésre.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+              Kóddal oldok meg
+              <br />
+              <span className="text-gradient-primary">valós problémákat.</span>
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed lg:pt-2">
+              Több éves tapasztalattal rendelkezem komplex webalkalmazások tervezésében
+              és fejlesztésében. Nem csak kódot írok — üzleti értéket teremtek.
+              A felhasználói élménytől az architektúráig, minden részletre figyelek.
+            </p>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+        >
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className="text-center p-6 rounded-xl border border-border bg-card"
+            >
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
+                {stat.value}
+              </div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Values */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {values.map((value, index) => (
             <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
+              key={value.title}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-6 rounded-2xl bg-card shadow-card hover:shadow-hover transition-all duration-300"
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="group flex gap-4 p-6 rounded-xl border border-border bg-card hover:border-primary/30 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <feature.icon className="h-6 w-6 text-primary-foreground" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+                <value.icon className="h-5 w-5 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-card-foreground">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                {feature.description}
-              </p>
+              <div>
+                <h3 className="font-semibold text-card-foreground mb-1">
+                  {value.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {value.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
