@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight, Github } from "lucide-react";
 
 interface ProjectCardProps {
   title: string;
@@ -18,29 +17,48 @@ const ProjectCard = ({ title, description, image, tags, liveUrl, githubUrl, inde
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative rounded-2xl overflow-hidden bg-card shadow-card hover:shadow-hover transition-all duration-500"
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className="group rounded-xl border border-border bg-card overflow-hidden hover:border-primary/30 transition-all duration-500"
     >
-      {/* Image container */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-52 overflow-hidden bg-secondary/30">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        {/* Hover links */}
-        <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
+      </div>
+
+      <div className="p-6">
+        <div className="flex flex-wrap gap-2 mb-4">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground bg-secondary rounded-md"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <h3 className="text-lg font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+          {title}
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-5 line-clamp-2">
+          {description}
+        </p>
+
+        <div className="flex items-center gap-3 pt-4 border-t border-border">
           {liveUrl && (
             <a
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-primary text-primary-foreground hover:scale-110 transition-transform"
-              aria-label="Élő demo megtekintése"
+              className="flex items-center gap-1.5 text-sm font-medium text-primary hover:underline underline-offset-4"
             >
-              <ExternalLink className="h-5 w-5" />
+              Élő demo
+              <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           )}
           {githubUrl && (
@@ -48,29 +66,12 @@ const ProjectCard = ({ title, description, image, tags, liveUrl, githubUrl, inde
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full bg-secondary text-foreground hover:scale-110 transition-transform"
-              aria-label="GitHub repo"
+              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              <Github className="h-5 w-5" />
+              <Github className="h-3.5 w-3.5" />
+              Forráskód
             </a>
           )}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2 text-card-foreground group-hover:text-primary transition-colors">
-          {title}
-        </h3>
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-          {description}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="text-xs font-medium">
-              {tag}
-            </Badge>
-          ))}
         </div>
       </div>
     </motion.article>
