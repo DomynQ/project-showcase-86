@@ -1,115 +1,134 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "email@example.com", href: "mailto:email@example.com" },
-  { icon: Phone, label: "Telefon", value: "+36 30 123 4567", href: "tel:+36301234567" },
-  { icon: MapPin, label: "Helyszín", value: "Budapest, Magyarország", href: null },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "email@example.com",
+    href: "mailto:email@example.com"
+  },
+  {
+    icon: Phone,
+    label: "Telefon",
+    value: "+36 30 123 4567",
+    href: "tel:+36301234567"
+  },
+  {
+    icon: MapPin,
+    label: "Helyszín",
+    value: "Budapest, Magyarország",
+    href: null
+  }
 ];
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent/[0.02] rounded-full blur-[120px] pointer-events-none" />
-
+    <section id="contact" className="py-24">
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="max-w-3xl mx-auto text-center mb-16"
         >
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-primary mb-6 block">
-            04 — Kapcsolat
+          <span className="inline-block px-4 py-2 mb-6 text-sm font-medium rounded-full bg-accent/10 text-accent">
+            Kapcsolat
           </span>
-          <h2 className="text-4xl md:text-6xl font-bold mb-4">
-            Dolgozzunk <span className="text-gradient-primary">együtt.</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Vegyük fel a <span className="text-gradient-accent">kapcsolatot</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-lg">
-            Van egy projektötleted? Keress meg, és építsünk valami nagyszerűt.
+          <p className="text-lg text-muted-foreground">
+            Ha érdekel a munkám, vagy van egy projektötleted, ne habozz felvenni velem a kapcsolatot!
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          {/* Contact info */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-2 space-y-4"
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
           >
-            {contactInfo.map((info) => (
-              <div
+            <h3 className="text-2xl font-semibold mb-8">Elérhetőségek</h3>
+            {contactInfo.map((info, index) => (
+              <motion.div
                 key={info.label}
-                className="group flex items-center gap-4 p-5 rounded-xl border border-border bg-card hover:border-primary/30 transition-all duration-500"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="flex items-center gap-4 p-4 rounded-xl bg-card shadow-soft hover:shadow-card transition-shadow"
               >
-                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 group-hover:shadow-[0_0_20px_-4px_hsl(160_84%_45%/0.2)] transition-all duration-500">
-                  <info.icon className="h-[18px] w-[18px] text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center flex-shrink-0">
+                  <info.icon className="h-5 w-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <p className="text-[11px] text-muted-foreground uppercase tracking-wider mb-0.5">{info.label}</p>
+                  <p className="text-sm text-muted-foreground">{info.label}</p>
                   {info.href ? (
-                    <a href={info.href} className="text-sm text-foreground font-medium hover:text-primary transition-colors">
+                    <a
+                      href={info.href}
+                      className="text-foreground font-medium hover:text-primary transition-colors"
+                    >
                       {info.value}
                     </a>
                   ) : (
-                    <p className="text-sm text-foreground font-medium">{info.value}</p>
+                    <p className="text-foreground font-medium">{info.value}</p>
                   )}
                 </div>
-              </div>
+              </motion.div>
             ))}
-
-            <div className="pt-6">
-              <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wider">Találj meg itt</p>
-              <div className="flex gap-4">
-                {["GitHub", "LinkedIn"].map((platform) => (
-                  <a
-                    key={platform}
-                    href={`https://${platform.toLowerCase()}.com`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/link flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {platform}
-                    <ArrowUpRight className="h-3 w-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  </a>
-                ))}
-              </div>
-            </div>
           </motion.div>
 
+          {/* Contact form */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-3"
+            transition={{ duration: 0.6 }}
+            className="p-8 rounded-2xl bg-card shadow-card"
           >
-            <div className="relative">
-              <div className="absolute -inset-px rounded-xl bg-gradient-to-b from-primary/10 via-transparent to-accent/5 opacity-0 hover:opacity-100 transition-opacity duration-700 blur-sm pointer-events-none" />
-              <form
-                className="relative space-y-4 p-8 rounded-xl border border-border bg-card"
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Input placeholder="Név" className="bg-secondary/30 border-border focus:border-primary transition-colors" />
-                  <Input type="email" placeholder="Email" className="bg-secondary/30 border-border focus:border-primary transition-colors" />
+            <h3 className="text-2xl font-semibold mb-6">Üzenet küldése</h3>
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <Input
+                    placeholder="Név"
+                    className="bg-secondary/50 border-border focus:border-primary"
+                  />
                 </div>
-                <Input placeholder="Tárgy" className="bg-secondary/30 border-border focus:border-primary transition-colors" />
-                <Textarea placeholder="Üzenet..." rows={5} className="bg-secondary/30 border-border focus:border-primary resize-none transition-colors" />
-                <Button
-                  type="submit"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-glow hover:shadow-[0_0_60px_-8px_hsl(160_84%_45%/0.25)] transition-all duration-500"
-                >
-                  <Send className="mr-2 h-4 w-4" />
-                  Üzenet küldése
-                </Button>
-              </form>
-            </div>
+                <div>
+                  <Input
+                    type="email"
+                    placeholder="Email"
+                    className="bg-secondary/50 border-border focus:border-primary"
+                  />
+                </div>
+              </div>
+              <div>
+                <Input
+                  placeholder="Tárgy"
+                  className="bg-secondary/50 border-border focus:border-primary"
+                />
+              </div>
+              <div>
+                <Textarea
+                  placeholder="Üzenet..."
+                  rows={5}
+                  className="bg-secondary/50 border-border focus:border-primary resize-none"
+                />
+              </div>
+              <Button type="submit" className="w-full bg-gradient-primary hover:opacity-90 transition-opacity">
+                <Send className="mr-2 h-4 w-4" />
+                Üzenet küldése
+              </Button>
+            </form>
           </motion.div>
         </div>
       </div>
